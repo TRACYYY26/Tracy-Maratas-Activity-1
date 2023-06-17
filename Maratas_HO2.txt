@@ -1,0 +1,196 @@
+//Maratas, Martin Tracy T.
+//BSCPE 1-1
+
+using System;
+using System.Collections.Generic;
+
+class McJollyDo
+{
+    static void Main()
+//MENU
+    {
+        Console.WriteLine("Welcome to McJollyDo ^ v ^");
+        Console.WriteLine(" ");
+        Console.WriteLine("McJollyDo Menu");
+        Console.WriteLine("____________________________________________");
+        Console.WriteLine("Select 1 to order McJollyDo Burger Yumdo");
+        Console.WriteLine("Select 2 to order McJollyDo Spaghetti");
+        Console.WriteLine("Select 3 to order McJollyDo McChickenJoy");
+        Console.WriteLine("Select 4 to order McJollyDo Apple Mango Pie");
+        Console.WriteLine("Select 5 to cancel order attempt");
+        Console.WriteLine("____________________________________________");
+//LIST 
+        List<string> orderedMeals = new List<string>();
+        int totalPrice = 0;
+        bool continueOrdering = true;
+
+        while (continueOrdering)
+        {
+            Console.Write("Enter Order: ");
+            int orderNum = Convert.ToInt32(Console.ReadLine());
+            Console.Write("The order you selected is: ");
+
+            string mealName = "";
+            int mealPrice = 0;
+//IF ELSE ORDER INPUT
+
+//IF ELSE(1)
+            if (orderNum == 1)
+            {
+                mealName = "McJollyDo Burger Yumdo | 120 Php";
+                mealPrice = 120;
+                Console.WriteLine(mealName);
+                Console.WriteLine("Cost: " + mealPrice + " Php");
+                Console.WriteLine(" ");
+                Console.WriteLine("Press 9 to confirm order");
+                Console.WriteLine("Press 8 to add order");
+                Console.WriteLine("Press 00 to cancel order");
+            }
+            
+//IF ELSE(2)
+            else if (orderNum == 2)
+            {
+                mealName = "McJollyDo Spaghetti | 100 Php";
+                mealPrice = 100;
+                Console.WriteLine(mealName);
+                Console.WriteLine("Cost: " + mealPrice + " Php");
+                Console.WriteLine(" ");
+                Console.WriteLine("Press 9 to confirm order");
+                Console.WriteLine("Press 8 to add order");
+                Console.WriteLine("Press 00 to cancel order");
+            }
+            
+//IF ELSE(3)
+            else if (orderNum == 3)
+            {
+                mealName = "McJollyDo McChickenJoy | 135 Php";
+                mealPrice = 135;
+                Console.WriteLine(mealName);
+                Console.WriteLine("Cost: " + mealPrice + " Php");
+                Console.WriteLine(" ");
+                Console.WriteLine("Press 9 to confirm order");
+                Console.WriteLine("Press 8 to add order");
+                Console.WriteLine("Press 00 to cancel order");
+            }
+            
+//IF ELSE(4)
+            else if (orderNum == 4)
+            {
+                mealName = "McJollyDo Apple Mango Pie | 55 Php";
+                mealPrice = 55;
+                Console.WriteLine(mealName);
+                Console.WriteLine("Cost: " + mealPrice + " Php");
+                Console.WriteLine(" ");
+                Console.WriteLine("Press 9 to confirm order");
+                Console.WriteLine("Press 8 to add order");
+                Console.WriteLine("Press 00 to cancel order");
+            }
+            
+//IF ELSE(5)
+            else if (orderNum == 5)
+            {
+                Console.WriteLine(" ");
+                Console.WriteLine("You have cancelled your order attempt");
+                Console.WriteLine(" ");
+                break;
+            }
+            
+//ELSE(invalid)
+            else
+            {
+                Console.WriteLine("Invalid order selection. Please try again.");
+                continue;
+            }
+            
+//Confirmation of orders
+            Console.Write("Press: ");
+            int processAction = Convert.ToInt32(Console.ReadLine());
+            if (processAction == 9 || processAction == 8)
+            {
+                Console.WriteLine(" ");
+                Console.WriteLine("Order Confirmed");
+                orderedMeals.Add(mealName);
+                totalPrice += mealPrice;
+            }
+//Cancellation 
+            else if (processAction == 0)
+            {
+                Console.WriteLine(" ");
+                Console.WriteLine("Order Cancelled");
+            }
+            else
+            {
+                Console.WriteLine("Invalid action. Order cancelled");
+            }
+
+//Loop for order
+            Console.WriteLine(" ");
+            Console.WriteLine("Do you want to place another order? (YES or NO)");
+            Console.Write("You have selected: ");
+            string continueInput = Console.ReadLine();
+            if (!continueInput.Equals("Yes", StringComparison.OrdinalIgnoreCase))
+            
+//Reciept for orders
+            {
+                continueOrdering = false;
+                Console.WriteLine(" ");
+                Console.WriteLine("------------- RECEIPT " + printRecieptNum() + " -----------------");
+                Console.WriteLine(" ");
+                
+//Order Count and reciept
+                for (int i = 0; i < orderedMeals.Count; i++)
+                {
+                    Console.WriteLine(orderedMeals[i]);
+                }
+
+                Console.WriteLine(" ");
+                Console.WriteLine("Total Cost: " + totalPrice + " Php");
+                Console.WriteLine(" ");
+                Console.WriteLine("-------------------------------------------------");
+                Console.WriteLine(" ");
+                Console.WriteLine("THANK YOU FOR DINING AT McJollyDo");
+                Console.WriteLine(" ");
+                
+//Quick Order Save Menu
+                Console.WriteLine("Do you want to save your order to quick orders?");
+                Console.WriteLine("Select 1 to accept");
+                Console.WriteLine("Select 2 to decline");
+                Console.Write("You have selected: ");
+                int saveQuickOrders = Convert.ToInt32(Console.ReadLine());
+                if (saveQuickOrders == 1)
+                {
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Order Saved");
+                    Console.WriteLine(" ");
+                    Console.WriteLine("List of Saved Order");
+                    Console.WriteLine(" ");
+                    Console.WriteLine("---------------------------------");
+                    
+//Reciept of order copy for quick save
+                    for (int i = 0; i < orderedMeals.Count; i++)
+                    {
+                        Console.WriteLine(orderedMeals[i]);
+                    }
+                    Console.WriteLine(" ");
+                    Console.WriteLine("---------------------------------");
+                }
+                
+//Decline for quick save
+                else if (saveQuickOrders == 2)
+                {
+                    Console.WriteLine(" ");
+                    Console.WriteLine("THANK YOU FOR DINING AT McJollyDo");
+                }
+            }
+        }
+    }
+
+//METHOD number generator
+    static int printRecieptNum()
+     {
+        Random recieptNumGen = new Random();
+        int number = recieptNumGen.Next(0, 999);
+         return number;
+     }
+}
+
